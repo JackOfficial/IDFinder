@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,16 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('post', [PostsController::class, 'index'])->name('posts')->middleware('auth');
+Route::get('search', [PostsController::class, 'search'])->name('search');
+Route::get('details/{id}', [PostsController::class, 'details'])->name('details');
+Route::get('cleam-id/{id}', [PostsController::class, 'cleam'])->name('cleam');
+//google oauth 2
 Route::get('redirect', [SocialController::class, 'redirect'])->name('redirect');
 Route::get('callback', [SocialController::class, 'callback'])->name('callback');

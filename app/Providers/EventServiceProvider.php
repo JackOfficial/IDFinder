@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CleamingEvent;
+use App\Events\PostEvent;
+use App\Listeners\CleamingListener;
+use App\Listeners\PostListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        PostEvent::class => [
+            PostListener::class,
+        ],
+        CleamingEvent::class => [
+            CleamingListener::class,
         ],
     ];
 

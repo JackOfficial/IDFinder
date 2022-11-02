@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('identification_id');
             $table->unsignedInteger('founder_id');
-            $table->string('status')->default(0);
-            $table->string('rate')->nullable();
+            $table->integer('status', 1)->default(0);
+            $table->integer('rate', 1)->nullable();
             $table->longText('comment')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

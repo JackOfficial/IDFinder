@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('identifications', function (Blueprint $table) {
+        Schema::create('wishlists', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('idtype_id');
-            $table->string('owner_name');
-            $table->string('dob')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('place_of_issue')->nullable();
-            $table->string('id_number')->nullable();
-            $table->string('photos')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('keyword');
+            $table->string('phone', 13)->nullable();
+            $table->string('email')->nullable();
             $table->string('status')->default('0');
             $table->timestamps();
             $table->foreign('idtype_id')->references('id')->on('idtypes')->onDelete('cascade');
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('identifications');
+        Schema::dropIfExists('wishlists');
     }
 };
